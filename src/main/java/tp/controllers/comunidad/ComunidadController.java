@@ -4,13 +4,11 @@ import io.javalin.http.Context;
 import tp.models.entities.builders.ComunidadBuilder;
 import tp.models.entities.builders.MiembroBuilder;
 import tp.models.entities.comunidad.*;
-import tp.models.entities.notificador.NoExisteFormatoException;
 import tp.models.entities.servicios.TipoServicio;
 import tp.models.repositories.RepositorioComunidades;
 import tp.models.repositories.RepositorioMiembros;
 import tp.models.repositories.RepositorioPersonas;
 import tp.models.repositories.RepositorioTiposDeServicio;
-
 
 import java.util.*;
 

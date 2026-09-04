@@ -1,14 +1,15 @@
 package tp.models.repositories;
 
+
 import tp.models.entities.entidad.Empresa;
-import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 import tp.server.Server;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 import java.util.List;
 
-public class RepositorioEmpresas implements WithSimplePersistenceUnit {
+public class RepositorioEmpresas  {
 
   private static RepositorioEmpresas instancia = null;
   private EntityManager entityManager;

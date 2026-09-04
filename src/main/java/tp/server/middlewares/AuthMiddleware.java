@@ -2,22 +2,12 @@ package tp.server.middlewares;
 
 import io.javalin.config.JavalinConfig;
 import io.javalin.http.Context;
-import tp.controllers.FactoryController;
-import tp.controllers.UbicacionController;
-import tp.controllers.entidad.EntidadController;
-import tp.models.entities.comunidad.Rol;
 import tp.models.entities.comunidad.RolPersona;
 import tp.models.entities.comunidad.Usuario;
 import tp.server.exceptions.AccessDeniedException;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static io.javalin.apibuilder.ApiBuilder.get;
-import static io.javalin.apibuilder.ApiBuilder.post;
-import static tp.models.entities.comunidad.RolPersona.ADMIN;
-import static tp.models.entities.comunidad.RolPersona.BASICO;
 
 public class AuthMiddleware {
     public static void apply(JavalinConfig config) {

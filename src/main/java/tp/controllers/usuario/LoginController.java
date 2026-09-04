@@ -1,16 +1,13 @@
 package tp.controllers.usuario;
 
 import io.javalin.http.Context;
-import org.apache.poi.ss.formula.atp.Switch;
-import tp.models.entities.comunidad.*;
-import tp.models.repositories.RepositorioComunidades;
-import tp.models.repositories.RepositorioMiembros;
+import tp.models.entities.comunidad.Persona;
+import tp.models.entities.comunidad.Usuario;
 import tp.models.repositories.RepositorioPersonas;
 import tp.models.repositories.RepositorioUsuarios;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class LoginController {
 

@@ -1,24 +1,23 @@
 package tp.models.entities.comunidad;
-import lombok.Builder;
+
 import lombok.Getter;
 import lombok.Setter;
 import tp.models.entities.converters.ConfiguracionRecepcionConverter;
 import tp.models.entities.converters.EstrategiaDeNotificacionConverter;
-import tp.models.entities.persistencia.Persistente;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import tp.models.entities.notificador.EstrategiaDeNotificacion;
 import tp.models.entities.notificador.Factory;
 import tp.models.entities.notificador.NoExisteFormatoException;
 import tp.models.entities.notificador.Notificador;
+import tp.models.entities.persistencia.Persistente;
 import tp.models.entities.servicios.Estado;
 import tp.models.entities.servicios.Incidente;
 import tp.models.entities.servicios.IncidenteBuilder;
 import tp.models.entities.servicios.Servicio;
-import tp.models.repositories.RepositorioIncidentes;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "miembro")

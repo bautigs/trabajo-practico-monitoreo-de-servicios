@@ -1,12 +1,12 @@
 package tp.controllers;
 
 import io.javalin.http.Context;
-import tp.models.entities.comunidad.Comunidad;
-import tp.models.entities.entidad.Establecimiento;
 import tp.models.entities.services.georef.Localidad;
 import tp.models.entities.services.georef.Municipio;
 import tp.models.entities.services.georef.Provincia;
-import tp.models.repositories.*;
+import tp.models.repositories.RepositorioLocalidades;
+import tp.models.repositories.RepositorioMunicipios;
+import tp.models.repositories.RepositorioProvincias;
 import tp.server.utils.ICrudViewsHandler;
 
 import java.util.ArrayList;

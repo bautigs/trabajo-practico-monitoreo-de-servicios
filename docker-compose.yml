@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: monitoreo-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: tp
+      POSTGRES_USER: tp
+      POSTGRES_PASSWORD: tp
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tp -d tp"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres-data:

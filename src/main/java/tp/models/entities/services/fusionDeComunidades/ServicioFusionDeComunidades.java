@@ -1,6 +1,5 @@
 package tp.models.entities.services.fusionDeComunidades;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -8,7 +7,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ServicioFusionDeComunidades {
     private static ServicioFusionDeComunidades instancia = null;

@@ -1,7 +1,6 @@
 package tp.controllers.usuario;
 
 import io.javalin.http.Context;
-import org.springframework.ui.Model;
 import tp.models.entities.comunidad.Persona;
 import tp.models.entities.notificador.wpp.EstrategiaDeWPP;
 import tp.models.entities.services.georef.Localidad;
@@ -12,9 +11,7 @@ import tp.models.repositories.RepositorioMunicipios;
 import tp.models.repositories.RepositorioPersonas;
 import tp.models.repositories.RepositorioProvincias;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class PerfilController {

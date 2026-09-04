@@ -1,7 +1,6 @@
 package tp.server.handlers;
 
 import io.javalin.Javalin;
-import tp.server.exceptions.AccessDeniedException;
 
 import java.util.Arrays;
 

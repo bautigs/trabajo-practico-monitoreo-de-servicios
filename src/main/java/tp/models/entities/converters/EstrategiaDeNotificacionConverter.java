@@ -3,8 +3,8 @@ package tp.models.entities.converters;
 import tp.models.entities.notificador.EstrategiaDeNotificacion;
 import tp.models.entities.notificador.mail.EstrategiaDeMail;
 import tp.models.entities.notificador.wpp.EstrategiaDeWPP;
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
 public class EstrategiaDeNotificacionConverter implements AttributeConverter<EstrategiaDeNotificacion, String> {

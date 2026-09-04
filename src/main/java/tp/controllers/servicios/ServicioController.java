@@ -1,9 +1,7 @@
 package tp.controllers.servicios;
 
 import io.javalin.http.Context;
-import tp.models.entities.entidad.TipoEntidad;
 import tp.models.entities.servicios.TipoServicio;
-import tp.models.repositories.RepositorioTiposDeEntidad;
 import tp.models.repositories.RepositorioTiposDeServicio;
 
 import java.util.ArrayList;

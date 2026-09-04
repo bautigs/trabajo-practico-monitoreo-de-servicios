@@ -3,7 +3,6 @@ package tp.controllers.ranking;
 import io.javalin.http.Context;
 import tp.models.entities.comunidad.Persona;
 import tp.models.entities.entidad.Entidad;
-import tp.models.entities.ranking.CriterioImpacto;
 import tp.models.entities.ranking.CriterioTiempoDeCierre;
 import tp.models.repositories.RepositorioEntidades;
 import tp.server.utils.ICrudViewsHandler;

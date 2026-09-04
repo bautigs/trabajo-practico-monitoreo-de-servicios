@@ -1,25 +1,16 @@
 package tp.models.entities.servicios;
 
-import tp.models.entities.comunidad.Comunidad;
-import tp.models.entities.comunidad.Miembro;
-import java.time.format.DateTimeFormatter;
-
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import tp.models.entities.comunidad.Comunidad;
+import tp.models.entities.comunidad.Miembro;
 import tp.models.entities.notificador.Notificacion;
 import tp.models.entities.persistencia.Persistente;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import jakarta.persistence.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "incidente")

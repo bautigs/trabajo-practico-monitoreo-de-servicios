@@ -1,6 +1,5 @@
 package tp.models.entities.comunidad;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import tp.models.entities.entidad.Establecimiento;
@@ -8,12 +7,13 @@ import tp.models.entities.persistencia.Persistente;
 import tp.models.entities.servicios.Incidente;
 import tp.models.entities.servicios.Servicio;
 import tp.models.entities.servicios.TipoServicio;
-// import transporte.Estacion;
-import javax.persistence.*;
+
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+
+// import transporte.Estacion;
 
 @Entity
 @Table(name = "comunidad")

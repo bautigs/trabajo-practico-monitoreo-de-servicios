@@ -2,7 +2,8 @@ package tp.models.entities.comunidad;
 
 import tp.models.entities.notificador.Notificacion;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Asincronico implements ConfiguracionRecepcion{
     private List<Notificacion> listaNotificacionesEnviar;

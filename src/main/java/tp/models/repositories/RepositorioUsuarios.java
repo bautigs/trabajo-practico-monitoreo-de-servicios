@@ -1,16 +1,15 @@
 package tp.models.repositories;
 
 import tp.models.entities.comunidad.Usuario;
-import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 import tp.server.Server;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NoResultException;
 import java.util.List;
 
-public class RepositorioUsuarios implements WithSimplePersistenceUnit {
+public class RepositorioUsuarios{
 
   private static RepositorioUsuarios instancia = null;
   private EntityManager entityManager;

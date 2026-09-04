@@ -1,19 +1,15 @@
+/*
 package tp.models.entities.persistencia;
 
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
-import tp.models.entities.services.georef.ListaLocalidades;
-import tp.models.entities.services.georef.ListaMunicipios;
-import tp.models.entities.services.georef.ListaProvincias;
-import tp.models.entities.services.georef.Localidad;
-import tp.models.entities.services.georef.Municipio;
-import tp.models.entities.services.georef.Provincia;
-import tp.models.entities.services.georef.ServicioGeoRef;
+import tp.models.entities.services.georef.*;
 import tp.models.repositories.RepositorioLocalidades;
 import tp.models.repositories.RepositorioMunicipios;
 import tp.models.repositories.RepositorioProvincias;
+
 import java.io.IOException;
 
-public class Runner implements WithSimplePersistenceUnit {
+public class Runner {
 
   public static void main(String[] args) throws IOException {
     new Runner().getLocalidades();
@@ -59,3 +55,4 @@ public class Runner implements WithSimplePersistenceUnit {
     System.exit(0);
   }
 }
+*/

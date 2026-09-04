@@ -4,22 +4,18 @@ import io.javalin.http.Context;
 import tp.controllers.incidentes.model.IncidenteFiltradoModel;
 import tp.controllers.incidentes.model.ServicioFiltradoModel;
 import tp.models.entities.comunidad.Comunidad;
-import tp.models.entities.comunidad.Miembro;
 import tp.models.entities.comunidad.Persona;
-import tp.models.entities.entidad.Entidad;
 import tp.models.entities.entidad.Establecimiento;
-import tp.models.entities.servicios.*;
-import tp.models.repositories.*;
+import tp.models.entities.servicios.Servicio;
+import tp.models.repositories.RepositorioComunidades;
+import tp.models.repositories.RepositorioEstablecimientos;
 import tp.server.utils.ICrudViewsHandler;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class IncidentesController implements ICrudViewsHandler {
 

@@ -2,9 +2,9 @@ package tp.models.entities.persistencia;
 
 import lombok.Getter;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 @Getter
 @MappedSuperclass
 public abstract class Persistente {

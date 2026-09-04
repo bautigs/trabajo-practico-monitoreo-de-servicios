@@ -3,7 +3,7 @@ package tp.models.entities.services.georef;
 
 import lombok.Getter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "localidad")

@@ -2,11 +2,9 @@ package tp.models.entities.services.fusionDeComunidades;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public interface FusionDeComunidadesService {
 

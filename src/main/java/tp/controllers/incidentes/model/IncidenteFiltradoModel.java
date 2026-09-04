@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Getter;
 import tp.models.entities.servicios.Estado;
 
-import java.time.LocalDateTime;
 @Builder
 @Getter
 public class IncidenteFiltradoModel {

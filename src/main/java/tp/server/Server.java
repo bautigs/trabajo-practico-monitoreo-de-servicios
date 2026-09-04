@@ -9,8 +9,8 @@ import io.javalin.rendering.JavalinRenderer;
 import tp.server.handlers.AppHandlers;
 import tp.server.middlewares.AuthMiddleware;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,10 +42,10 @@ public class Server {
     Map<String, Object> configOverrides = new HashMap<String, Object>();
 
     String[] keys = new String[] {
-            "javax.persistence.jdbc.url",
-            "javax.persistence.jdbc.user",
-            "javax.persistence.jdbc.password",
-            "javax.persistence.jdbc.driver",
+            "jakarta.persistence.jdbc.url",
+            "jakarta.persistence.jdbc.user",
+            "jakarta.persistence.jdbc.password",
+            "jakarta.persistence.jdbc.driver",
             "hibernate.hbm2ddl.auto"
     };
 

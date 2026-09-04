@@ -1,9 +1,7 @@
 package tp.models.entities.converters;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
-import java.sql.Date;
-import java.sql.Time;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 

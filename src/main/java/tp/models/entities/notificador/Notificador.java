@@ -6,7 +6,6 @@ import tp.models.entities.comunidad.Persona;
 import tp.models.entities.servicios.Incidente;
 import tp.models.entities.servicios.Servicio;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.time.LocalDateTime;
 
 public class Notificador {

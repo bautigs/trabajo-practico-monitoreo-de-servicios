@@ -1,6 +1,6 @@
 package tp.models.entities.builders;
 
-import tp.models.entities.comunidad.*;
+import tp.models.entities.comunidad.Persona;
 import tp.models.entities.entidad.Empresa;
 import tp.models.entities.notificador.NoExisteFormatoException;
 

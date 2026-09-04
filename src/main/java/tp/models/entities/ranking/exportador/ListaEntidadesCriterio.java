@@ -1,7 +1,7 @@
 package tp.models.entities.ranking.exportador;
 
-import tp.models.entities.entidad.Entidad;
 import lombok.Setter;
+import tp.models.entities.entidad.Entidad;
 
 import java.util.List;
 

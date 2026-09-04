@@ -3,8 +3,8 @@ package tp.models.entities.converters;
 import tp.models.entities.comunidad.Asincronico;
 import tp.models.entities.comunidad.ConfiguracionRecepcion;
 import tp.models.entities.comunidad.Sincronico;
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
 public class ConfiguracionRecepcionConverter implements AttributeConverter<ConfiguracionRecepcion, String> {

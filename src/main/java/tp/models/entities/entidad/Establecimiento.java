@@ -2,19 +2,14 @@ package tp.models.entities.entidad;
 
 import lombok.Getter;
 import lombok.Setter;
-import tp.models.entities.servicios.Incidente;
-import tp.models.entities.servicios.Servicio;
 import tp.models.entities.persistencia.Persistente;
 import tp.models.entities.services.georef.Localidad;
 import tp.models.entities.services.georef.Municipio;
 import tp.models.entities.services.georef.Provincia;
+import tp.models.entities.servicios.Incidente;
+import tp.models.entities.servicios.Servicio;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

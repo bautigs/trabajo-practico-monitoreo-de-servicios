@@ -1,12 +1,10 @@
 package tp.controllers.entidad;
 
 import io.javalin.http.Context;
-import tp.models.entities.comunidad.Persona;
 import tp.models.entities.entidad.Entidad;
 import tp.models.entities.entidad.Establecimiento;
 import tp.models.entities.entidad.TipoEntidad;
 import tp.models.repositories.RepositorioEntidades;
-import tp.models.repositories.RepositorioPersonas;
 import tp.models.repositories.RepositorioTiposDeEntidad;
 
 import java.util.ArrayList;

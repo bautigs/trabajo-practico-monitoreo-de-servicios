@@ -13,7 +13,6 @@ import tp.models.repositories.RepositorioIncidentes;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class CierreIncidenteController {
     public void cerrar(Context context){

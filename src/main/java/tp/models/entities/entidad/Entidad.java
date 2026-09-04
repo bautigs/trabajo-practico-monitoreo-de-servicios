@@ -1,25 +1,19 @@
 package tp.models.entities.entidad;
 
 import lombok.Getter;
+import lombok.Setter;
+import tp.models.entities.comunidad.Comunidad;
+import tp.models.entities.persistencia.Persistente;
+import tp.models.entities.servicios.Incidente;
+import tp.models.entities.servicios.Servicio;
 
+import jakarta.persistence.*;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import lombok.Setter;
-import tp.models.entities.comunidad.Comunidad;
-import tp.models.entities.persistencia.Persistente;
-import tp.models.entities.servicios.Incidente;
-import tp.models.entities.servicios.Servicio;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "entidad")

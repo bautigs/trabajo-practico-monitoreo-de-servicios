@@ -1,0 +1,20 @@
+# Maven / build outputs
+target/
+*.class
+
+# Environment variables / secrets
+.env
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

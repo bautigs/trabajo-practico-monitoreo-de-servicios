@@ -1,6 +1,5 @@
 package tp.controllers.usuario;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
 import tp.models.entities.builders.MiembroBuilder;

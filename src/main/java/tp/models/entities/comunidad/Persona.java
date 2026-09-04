@@ -1,24 +1,23 @@
 package tp.models.entities.comunidad;
 
-import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import tp.models.entities.converters.ConfiguracionRecepcionConverter;
 import tp.models.entities.converters.EstrategiaDeNotificacionConverter;
 import tp.models.entities.entidad.Entidad;
 import tp.models.entities.entidad.Establecimiento;
-import lombok.Getter;
-import lombok.Setter;
+import tp.models.entities.notificador.EstrategiaDeNotificacion;
+import tp.models.entities.notificador.Factory;
+import tp.models.entities.notificador.NoExisteFormatoException;
 import tp.models.entities.persistencia.Persistente;
 import tp.models.entities.services.georef.Localidad;
 import tp.models.entities.services.georef.Municipio;
 import tp.models.entities.services.georef.Provincia;
-import tp.models.entities.notificador.EstrategiaDeNotificacion;
-import tp.models.entities.notificador.Factory;
-import tp.models.entities.notificador.NoExisteFormatoException;
 import tp.models.entities.servicios.Servicio;
 import tp.models.entities.servicios.TipoServicio;
 import tp.models.repositories.RepositorioEstablecimientos;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
