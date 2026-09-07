@@ -1,0 +1,52 @@
+{
+  "realm": "monitoreo-servicios",
+  "enabled": true,
+  "sslRequired": "none",
+  "roles": {
+    "realm": [
+      { "name": "ADMIN" },
+      { "name": "BASICO" },
+      { "name": "RESPONSABLE" }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "monitoreo-frontend",
+      "enabled": true,
+      "publicClient": true,
+      "protocol": "openid-connect",
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "redirectUris": ["*"],
+      "webOrigins": ["*"]
+    }
+  ],
+  "users": [
+    {
+      "username": "admin",
+      "enabled": true,
+      "email": "admin@monitoreo-servicios.local",
+      "emailVerified": true,
+      "firstName": "Admin",
+      "lastName": "DePrueba",
+      "credentials": [
+        { "type": "password", "value": "admin123", "temporary": false }
+      ],
+      "requiredActions": [],
+      "realmRoles": ["ADMIN"]
+    },
+    {
+      "username": "basico",
+      "enabled": true,
+      "email": "basico@monitoreo-servicios.local",
+      "emailVerified": true,
+      "firstName": "Basico",
+      "lastName": "DePrueba",
+      "credentials": [
+        { "type": "password", "value": "basico123", "temporary": false }
+      ],
+      "requiredActions": [],
+      "realmRoles": ["BASICO"]
+    }
+  ]
+}
