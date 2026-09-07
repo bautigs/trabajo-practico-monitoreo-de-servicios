@@ -1,6 +1,6 @@
 package tests;
 
-import tp.models.entities.services.fusionDeComunidades.*;
+import tp.models.services.fusionDeComunidades.*;
 
 import java.io.IOException;
 import java.util.ArrayList;

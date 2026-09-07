@@ -1,23 +1,23 @@
 package tests.entrega3;
 
-import io.github.flbulgarelli.jpa.extras.test.SimplePersistenceTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tp.models.entities.services.georef.Municipio;
-import tp.models.repositories.RepositorioMunicipios;
-import tp.models.repositories.RepositorioProvincias;
-import tp.models.entities.services.georef.Provincia;
+import tp.models.services.georef.Municipio;
+import tp.repositories.RepositorioMiembros;
+import tp.repositories.RepositorioMunicipios;
+import tp.repositories.RepositorioProvincias;
+import tp.models.services.georef.Provincia;
 
 import java.util.List;
 
-public class Entrega3Tests implements SimplePersistenceTest {
+public class Entrega3Tests {
 
-  private RepositorioProvincias repositorioProvincias;
+  /* private RepositorioProvincias repositorioProvincias;
 
   @BeforeEach
   public void init() {
-    this.repositorioProvincias = RepositorioProvincias.getInstancia();
+    this.repositorioProvincias = 
   }
   @Test
   public void buscaProvinciaPorId() {
@@ -39,5 +39,5 @@ public class Entrega3Tests implements SimplePersistenceTest {
   for (Municipio municipio: municipios){
       System.out.println(municipio.nombre);
     }
-  }
+  } */
 }

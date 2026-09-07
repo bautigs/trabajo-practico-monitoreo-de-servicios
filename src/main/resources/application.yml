@@ -18,3 +18,11 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
+
+output:
+  ansi:
+    enabled: always
+
+logging:
+  level:
+    org.flywaydb: DEBUG

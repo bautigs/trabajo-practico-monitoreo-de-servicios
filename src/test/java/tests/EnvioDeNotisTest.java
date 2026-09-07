@@ -1,15 +1,15 @@
 package tests;
 
-import tp.models.entities.comunidad.Comunidad;
-import tp.models.entities.comunidad.Miembro;
-import tp.models.entities.entidad.Entidad;
-import tp.models.entities.entidad.Establecimiento;
-import tp.models.entities.notificador.mail.EstrategiaDeMail;
-import tp.models.entities.notificador.wpp.EstrategiaDeWPP;
+import tp.models.comunidad.Comunidad;
+import tp.models.comunidad.Miembro;
+import tp.models.entidad.Entidad;
+import tp.models.entidad.Establecimiento;
+import tp.models.notificador.mail.EstrategiaDeMail;
+import tp.models.notificador.wpp.EstrategiaDeWPP;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import tp.models.entities.servicios.Servicio;
+import tp.models.servicios.Servicio;
 
 import static org.mockito.Mockito.*;
 

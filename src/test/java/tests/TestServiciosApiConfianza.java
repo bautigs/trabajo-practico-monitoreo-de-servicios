@@ -1,6 +1,6 @@
 package tests;
 
-import tp.models.entities.services.gradoDeConfianza.*;
+import tp.models.services.gradoDeConfianza.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
