@@ -1,8 +1,8 @@
 package tests;
 
-import tp.models.entities.csv.ImportadorCSV;
-import tp.models.entities.entidad.Empresa;
-import tp.models.entities.entidad.OrganismoDeControl;
+import tp.models.csv.ImportadorCSV;
+import tp.models.entidad.Empresa;
+import tp.models.entidad.OrganismoDeControl;
 
 import java.io.IOException;
 import java.util.List;

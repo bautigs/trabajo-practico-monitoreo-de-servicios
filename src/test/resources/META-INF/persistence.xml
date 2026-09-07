@@ -8,21 +8,21 @@
     <persistence-unit name="simple-persistence-unit" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <class>tp.models.entities.entidad.Entidad</class>
-        <class>tp.models.entities.entidad.Establecimiento</class>
-        <class>tp.models.entities.servicios.Servicio</class>
-        <class>tp.models.entities.servicios.TipoServicio</class>
-        <class>tp.models.entities.servicios.Incidente</class>
-        <class>tp.models.entities.comunidad.Persona</class>
-        <class>tp.models.entities.comunidad.Miembro</class>
-        <class>tp.models.entities.comunidad.Usuario</class>
-        <class>tp.models.entities.comunidad.Comunidad</class>
-        <class>tp.models.entities.services.georef.Provincia</class>
-        <class>tp.models.entities.services.georef.Municipio</class>
-        <class>tp.models.entities.services.georef.Localidad</class>
-        <class>tp.models.entities.entidad.TipoEntidad</class>
-        <class>tp.models.entities.entidad.Empresa</class>
-        <class>tp.models.entities.entidad.OrganismoDeControl</class>
+        <class>tp.models.entidad.Entidad</class>
+        <class>tp.models.entidad.Establecimiento</class>
+        <class>tp.models.servicios.Servicio</class>
+        <class>tp.models.servicios.TipoServicio</class>
+        <class>tp.models.servicios.Incidente</class>
+        <class>tp.models.comunidad.Persona</class>
+        <class>tp.models.comunidad.Miembro</class>
+        <class>tp.models.comunidad.Usuario</class>
+        <class>tp.models.comunidad.Comunidad</class>
+        <class>tp.models.services.georef.Provincia</class>
+        <class>tp.models.services.georef.Municipio</class>
+        <class>tp.models.services.georef.Localidad</class>
+        <class>tp.models.entidad.TipoEntidad</class>
+        <class>tp.models.entidad.Empresa</class>
+        <class>tp.models.entidad.OrganismoDeControl</class>
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>

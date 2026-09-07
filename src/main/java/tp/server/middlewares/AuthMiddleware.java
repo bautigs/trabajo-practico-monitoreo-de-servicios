@@ -2,8 +2,8 @@ package tp.server.middlewares;
 
 import io.javalin.config.JavalinConfig;
 import io.javalin.http.Context;
-import tp.models.entities.comunidad.RolPersona;
-import tp.models.entities.comunidad.Usuario;
+import tp.models.comunidad.RolPersona;
+import tp.models.comunidad.Usuario;
 import tp.server.exceptions.AccessDeniedException;
 
 import java.util.Arrays;
