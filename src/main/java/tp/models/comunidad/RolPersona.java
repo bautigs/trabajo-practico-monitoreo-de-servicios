@@ -1,8 +1,6 @@
 package tp.models.comunidad;
 
-import io.javalin.security.RouteRole;
-
-public enum RolPersona implements RouteRole {
+public enum RolPersona {
     ADMIN,
     BASICO,
     RESPONSABLE
