@@ -2,10 +2,10 @@ package tp.models.builders;
 
 import tp.models.comunidad.Miembro;
 import tp.models.comunidad.Persona;
-import tp.models.comunidad.Usuario;
 import tp.models.entidad.Entidad;
 import tp.models.servicios.TipoServicio;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -27,8 +27,13 @@ public class PersonaBuilder {
         return this;
     }
 
-    public PersonaBuilder usuario(Usuario usuario){
-        persona.setUsuario(usuario);
+    public PersonaBuilder keycloakId(String keycloakId){
+        persona.setKeycloakId(keycloakId);
+        return this;
+    }
+
+    public PersonaBuilder fechaDeAlta(LocalDate fechaDeAlta){
+        persona.setFechaDeAlta(fechaDeAlta);
         return this;
     }
 

@@ -18,6 +18,7 @@ import tp.models.servicios.TipoServicio;
 import tp.repositories.RepositorioEstablecimientos;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -33,9 +34,10 @@ public class Persona extends Persistente {
   @OneToMany(mappedBy = "persona")
   private Set<Miembro> membresias = new HashSet<>();
 
-  @OneToOne
-  @JoinColumn(name = "usuario_id", referencedColumnName = "id")
-  private Usuario usuario;
+  @Column(name = "keycloak_id")
+  private String keycloakId;
+
+  private LocalDate fechaDeAlta;
 
   @Column(name = "nombreApellido")
   private String nombreApellido;
