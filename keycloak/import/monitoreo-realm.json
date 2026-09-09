@@ -19,6 +19,17 @@
       "directAccessGrantsEnabled": true,
       "redirectUris": ["*"],
       "webOrigins": ["*"]
+    },
+    {
+      "clientId": "monitoreo-backend",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "monitoreo-backend-secret-dev",
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false
     }
   ],
   "users": [
@@ -29,10 +40,7 @@
       "emailVerified": true,
       "firstName": "Admin",
       "lastName": "DePrueba",
-      "credentials": [
-        { "type": "password", "value": "admin123", "temporary": false }
-      ],
-      "requiredActions": [],
+      "credentials": [ { "type": "password", "value": "admin123", "temporary": false } ],
       "realmRoles": ["ADMIN"]
     },
     {
@@ -42,11 +50,18 @@
       "emailVerified": true,
       "firstName": "Basico",
       "lastName": "DePrueba",
-      "credentials": [
-        { "type": "password", "value": "basico123", "temporary": false }
-      ],
-      "requiredActions": [],
+      "credentials": [ { "type": "password", "value": "basico123", "temporary": false } ],
       "realmRoles": ["BASICO"]
+    },
+    {
+      "username": "svc-backend",
+      "enabled": true,
+      "email": "svc-backend@monitoreo-servicios.local",
+      "emailVerified": true,
+      "firstName": "Servicio",
+      "lastName": "Backend",
+      "credentials": [ { "type": "password", "value": "svc-backend-dev", "temporary": false } ],
+      "clientRoles": { "realm-management": ["view-users", "query-users", "manage-users"] }
     }
   ]
 }

@@ -1,3 +1,10 @@
 {
-  "java.compile.nullAnalysis.mode": "automatic"
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+  "java.format.settings.profile": "GoogleStyle",
+  "editor.formatOnSave": true,
+  "java.saveActions.organizeImports": true,
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  }
 }

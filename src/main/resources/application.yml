@@ -36,3 +36,12 @@ output:
 logging:
   level:
     org.flywaydb: DEBUG
+
+keycloak:
+  admin:
+    server-url: ${KEYCLOAK_SERVER_URL:http://localhost:8081}
+    realm: monitoreo-servicios
+    client-id: ${KEYCLOAK_BACKEND_CLIENT_ID:monitoreo-backend}
+    client-secret: ${KEYCLOAK_BACKEND_SECRET}
+    username: ${KEYCLOAK_BACKEND_USERNAME:svc-backend}
+    password: ${KEYCLOAK_BACKEND_PASSWORD}
