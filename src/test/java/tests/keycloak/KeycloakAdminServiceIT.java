@@ -6,18 +6,19 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import tp.models.services.keycloak.KeycloakAdminService;
-import tp.models.services.keycloak.KeycloakUser;
+
+import tp.services.keycloak.KeycloakAdminService;
+import tp.services.keycloak.KeycloakUser;
 
 @Tag("integration")
-@SpringBootTest 
+@SpringBootTest
 public class KeycloakAdminServiceIT {
 
-    @Autowired 
+    @Autowired
     KeycloakAdminService service;
 
-    @Test 
-    void listaLosUsuariosDePruebaDelRealm(){
-        assertThat(service.listarUsuarios(null, 0,100)).extracting(KeycloakUser::username).contains("admin","basico");
+    @Test
+    void listaLosUsuariosDePruebaDelRealm() {
+        assertThat(service.listarUsuarios(null, 0, 100)).extracting(KeycloakUser::username).contains("admin", "basico");
     }
 }

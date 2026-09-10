@@ -2,11 +2,10 @@ package tp.models.builders;
 
 import tp.models.entidad.Entidad;
 import tp.models.entidad.Establecimiento;
-import tp.models.services.georef.Localidad;
-import tp.models.services.georef.Municipio;
-import tp.models.services.georef.Provincia;
 import tp.models.servicios.Servicio;
-
+import tp.services.georef.Localidad;
+import tp.services.georef.Municipio;
+import tp.services.georef.Provincia;
 
 import java.util.List;
 

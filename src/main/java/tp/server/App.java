@@ -7,16 +7,15 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import tp.models.services.keycloak.KeycloakAdminProperties;
+import tp.services.keycloak.KeycloakAdminProperties;
 
 import java.io.IOException;
 import java.util.TimeZone;
 
-
 @SpringBootApplication(scanBasePackages = "tp")
 @EnableJpaRepositories(basePackages = "tp.repositories")
 @EntityScan(basePackages = "tp.models")
-@EnableConfigurationProperties(KeycloakAdminProperties.class) 
+@EnableConfigurationProperties(KeycloakAdminProperties.class)
 @EnableScheduling
 public class App {
   public static void main(String[] args) throws IOException {

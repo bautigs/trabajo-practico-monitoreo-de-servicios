@@ -10,13 +10,12 @@ import tp.models.notificador.EstrategiaDeNotificacion;
 import tp.models.notificador.Factory;
 import tp.models.notificador.NoExisteFormatoException;
 import tp.models.persistencia.Persistente;
-import tp.models.services.georef.Localidad;
-import tp.models.services.georef.Municipio;
-import tp.models.services.georef.Provincia;
 import tp.models.servicios.Servicio;
 import tp.models.servicios.TipoServicio;
 import tp.repositories.RepositorioEstablecimientos;
-
+import tp.services.georef.Localidad;
+import tp.services.georef.Municipio;
+import tp.services.georef.Provincia;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -81,8 +80,6 @@ public class Persona extends Persistente {
   @Enumerated(EnumType.STRING)
   private RolPersona rolPersona;
 
-
-
   public void setEstrategia(String estrategia) throws NoExisteFormatoException {
     this.estrategia = Factory.crear(estrategia);
   }
@@ -95,56 +92,53 @@ public class Persona extends Persistente {
     this.configuracion = new Asincronico();
   }
 
-
   private List<Establecimiento> establecimientosDeInteres() {
     List<Establecimiento> establecimientosInteres = new ArrayList<>();
-    entidadesDeInteres.forEach(entidad -> establecimientosInteres.
-            addAll(entidad.getListaEstablecimientos()));
+    entidadesDeInteres.forEach(entidad -> establecimientosInteres.addAll(entidad.getListaEstablecimientos()));
 
     return establecimientosInteres;
   }
 
-  public List<Servicio> servicioDeInteres(){
+  public List<Servicio> servicioDeInteres() {
     List<Servicio> serviciosDeEntidadesDeInteres;
     serviciosDeEntidadesDeInteres = new ArrayList<>();
 
     this.establecimientosDeInteres().forEach(establecimiento -> establecimiento.getServicios().stream()
-            .filter(servicio -> this.tiposDeServiciosDeInteres.contains(servicio.getTipoServicio()))
-            .forEach(serviciosDeEntidadesDeInteres::add));
+        .filter(servicio -> this.tiposDeServiciosDeInteres.contains(servicio.getTipoServicio()))
+        .forEach(serviciosDeEntidadesDeInteres::add));
 
     return serviciosDeEntidadesDeInteres;
   }
 
-  public void setMunicipio(Municipio unMunicipio){
+  public void setMunicipio(Municipio unMunicipio) {
     this.municipio = unMunicipio;
   }
 
-  public void setLocalidad(Localidad unaLocalidad){
+  public void setLocalidad(Localidad unaLocalidad) {
     this.localidad = unaLocalidad;
   }
 
-  public void setProvinicia(Provincia unaProvincia){
+  public void setProvinicia(Provincia unaProvincia) {
     this.provincia = unaProvincia;
   }
 
-
   public void suscribirse() {
-    this.servicioDeInteres().
-            forEach(servicio -> servicio.
-                    getSuscriptores().add(this));
+    this.servicioDeInteres().forEach(servicio -> servicio.getSuscriptores().add(this));
   }
 
-  public Boolean tieneComunidades(){
+  public Boolean tieneComunidades() {
     return !membresias.isEmpty();
   }
-  public List<Comunidad> getComunidades(){
+
+  public List<Comunidad> getComunidades() {
     return membresias.stream().map(Miembro::getComunidad).toList();
   }
-  public boolean isAdmin(){
+
+  public boolean isAdmin() {
     return getRolPersona().equals(RolPersona.ADMIN);
   }
 
-  public void agregarMembresia(Miembro miembro){
+  public void agregarMembresia(Miembro miembro) {
     this.membresias.add(miembro);
   }
 

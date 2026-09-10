@@ -3,12 +3,11 @@ package tp.models.entidad;
 import lombok.Getter;
 import lombok.Setter;
 import tp.models.persistencia.Persistente;
-import tp.models.services.georef.Localidad;
-import tp.models.services.georef.Municipio;
-import tp.models.services.georef.Provincia;
 import tp.models.servicios.Incidente;
 import tp.models.servicios.Servicio;
-
+import tp.services.georef.Localidad;
+import tp.services.georef.Municipio;
+import tp.services.georef.Provincia;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,10 +43,11 @@ public class Establecimiento extends Persistente {
     @JoinColumn(name = "entidad_id", referencedColumnName = "id")
     private Entidad entidadALaQuePertenece;
 
-    public Establecimiento()  {
+    public Establecimiento() {
         this.servicios = new ArrayList<>();
     }
-    public void agregarServicios(Servicio ... servicios) {
+
+    public void agregarServicios(Servicio... servicios) {
         Collections.addAll(this.servicios, servicios);
     }
 
@@ -60,31 +60,32 @@ public class Establecimiento extends Persistente {
     }
 
     public Servicio servicioSegunDescripcion(String descripcionServicio) {
-        return this.servicios.stream().filter(s -> descripcionServicio.equals(s.getTipoServicio().getNombre())).findFirst().orElse(null);
+        return this.servicios.stream().filter(s -> descripcionServicio.equals(s.getTipoServicio().getNombre()))
+                .findFirst().orElse(null);
     }
 
-    public boolean esEstablecimientoConIncidentes(){
+    public boolean esEstablecimientoConIncidentes() {
         return !this.obtenerIncidentesDelEstablecimiento().isEmpty();
     }
 
-    public List<Incidente> obtenerIncidentesDelEstablecimiento(){
+    public List<Incidente> obtenerIncidentesDelEstablecimiento() {
         List<Incidente> incidentes = new ArrayList<>();
 
         return this.getServicios()
-            .stream()
-            .flatMap(unServicio->unServicio.getIncidentesAbiertos().stream())
-            .collect(Collectors.toList());
+                .stream()
+                .flatMap(unServicio -> unServicio.getIncidentesAbiertos().stream())
+                .collect(Collectors.toList());
     }
 
     public List<Servicio> obtenerServiciosConIncidente() {
         return this.servicios.stream().filter(Servicio::tieneIncidentes).toList();
     }
 
-    public boolean estaEnMunicipio(Municipio municipio){
+    public boolean estaEnMunicipio(Municipio municipio) {
         return this.localidad.municipio == municipio;
     }
 
-    public boolean estaEnLocalidad(Localidad localidad){
+    public boolean estaEnLocalidad(Localidad localidad) {
         return this.localidad == localidad;
     }
 

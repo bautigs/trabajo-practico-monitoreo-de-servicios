@@ -13,10 +13,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestClient;
 
-import tp.models.services.keycloak.KeycloakAdminProperties;
-import tp.models.services.keycloak.KeycloakAdminService;
-import tp.models.services.keycloak.KeycloakTokenProvider;
-import tp.models.services.keycloak.KeycloakUser;
+import tp.services.keycloak.KeycloakAdminProperties;
+import tp.services.keycloak.KeycloakAdminService;
+import tp.services.keycloak.KeycloakTokenProvider;
+import tp.services.keycloak.KeycloakUser;
 
 class KeycloakAdminServiceTest {
 
@@ -39,15 +39,15 @@ class KeycloakAdminServiceTest {
 
   }
 
-  @Test 
-  void listarUsuarios_devuelveLaNominaConElBearer(){
+  @Test
+  void listarUsuarios_devuelveLaNominaConElBearer() {
     server.expect(requestTo("http://kc/admin/realms/monitoreo-servicios/users?first=0&max=20"))
         .andExpect(header("Authorization", "Bearer fake-token"))
         .andRespond(withSuccess("""
-                [{"id":"1","username":"admin","email":"a@x","firstName":"Admin","lastName":"D","enabled":true}]
-                """,MediaType.APPLICATION_JSON));
+            [{"id":"1","username":"admin","email":"a@x","firstName":"Admin","lastName":"D","enabled":true}]
+            """, MediaType.APPLICATION_JSON));
 
-    List<KeycloakUser> usuarios = service.listarUsuarios(null,0,20);
+    List<KeycloakUser> usuarios = service.listarUsuarios(null, 0, 20);
 
     assertThat(usuarios).extracting(KeycloakUser::username).containsExactly("admin");
     server.verify();
