@@ -17,6 +17,7 @@ import tp.repositories.RepositorioLocalidades;
 import tp.repositories.RepositorioMunicipios;
 import tp.repositories.RepositorioProvincias;
 import tp.services.georef.GeoRefImportService;
+import tp.services.georef.Localidad;
 import tp.services.georef.ListaLocalidades;
 import tp.services.georef.ListaMunicipios;
 import tp.services.georef.ListaProvincias;
@@ -83,6 +84,34 @@ public class GeoRefImportServiceTest {
         assertThat(laPlata.provincia).isSameAs(provinciaManaged);
         verify(repositorioMuncipios).saveAll(listaMunicipios.municipios);
 
+    }
+
+    @Test
+    void importarCatalogo_localidadConMunicipioDeIdNulo_noExplota() throws IOException {
+        // caso real de GeoRef: algunas localidades traen "municipio": {"id": null}
+        // (zonas sin gobierno municipal) en vez de "municipio": null directamente.
+        ListaProvincias listaProvincias = new ListaProvincias();
+        listaProvincias.provincias = List.of();
+        when(servicioGeoRef.listaProvincias()).thenReturn(listaProvincias);
+
+        ListaMunicipios listaMunicipios = new ListaMunicipios();
+        listaMunicipios.municipios = List.of();
+        listaMunicipios.total = 0;
+        when(servicioGeoRef.municipios()).thenReturn(listaMunicipios);
+
+        Localidad sinMunicipio = new Localidad();
+        sinMunicipio.id = 5000L;
+        sinMunicipio.nombre = "Isla Sin Gobierno Local";
+        sinMunicipio.municipio = new Municipio(); // no-null, pero con id null
+
+        ListaLocalidades listaLocalidades = new ListaLocalidades();
+        listaLocalidades.localidades = List.of(sinMunicipio);
+        when(servicioGeoRef.localidades()).thenReturn(listaLocalidades);
+
+        geoRefImportService.importarCatalogo();
+
+        assertThat(sinMunicipio.municipio).isNull();
+        verify(repositorioLocalidades).saveAll(listaLocalidades.localidades);
     }
 
 }

@@ -83,15 +83,18 @@ public class ServicioGeoRef {
     }
 
     public ListaMunicipios municipios() throws IOException {
+        // GeoRef tiene ~2082 municipios reales (sep-2026); 1900 los truncaba y
+        // rompia el import (localidades que referencian un municipio fuera del
+        // corte). Dejamos margen para que crezca sin volver a romperse.
         GeoRefService geoRefService = this.retrofit.create(GeoRefService.class);
-        Call<ListaMunicipios> municipiosCall = geoRefService.municipios(1900);
+        Call<ListaMunicipios> municipiosCall = geoRefService.municipios(3000);
         Response<ListaMunicipios> municipiosResponse = municipiosCall.execute();
         return municipiosResponse.body();
     }
 
     public ListaLocalidades localidades() throws IOException {
         GeoRefService geoRefService = this.retrofit.create(GeoRefService.class);
-        Call<ListaLocalidades> localidadesCall = geoRefService.localidades(4200);
+        Call<ListaLocalidades> localidadesCall = geoRefService.localidades(5000);
         Response<ListaLocalidades> localidadesResponse = localidadesCall.execute();
         return localidadesResponse.body();
     }

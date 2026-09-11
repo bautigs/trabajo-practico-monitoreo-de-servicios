@@ -67,8 +67,11 @@ public class GeoRefImportService {
 
         List<Localidad> localidades = listaLocalidades.localidades;
 
-        localidades.forEach(
-                l -> l.municipio = l.municipio == null ? null : repositorioMunicipios.getReferenceById(l.municipio.id));
+        // algunas localidades reales de GeoRef traen "municipio": {"id": null, ...}
+        // (zonas sin gobierno municipal) -- no alcanza con chequear que municipio no
+        // sea null, hay que chequear tambien el id adentro.
+        localidades.forEach(l -> l.municipio = (l.municipio == null || l.municipio.id == null) ? null
+                : repositorioMunicipios.getReferenceById(l.municipio.id));
 
         repositorioLocalidades.saveAll(localidades);
 
