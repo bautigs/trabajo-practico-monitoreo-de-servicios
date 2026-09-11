@@ -5,8 +5,10 @@ import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.test.web.servlet.MockMvc;
@@ -27,20 +30,24 @@ import tp.services.usuarios.PerfilService;
 // controller. Necesita descubrir un @SpringBootConfiguration subiendo por el
 // arbol de paquetes -> lo encuentra en tp.TestApplicationConfig.
 @WebMvcTest(PerfilController.class)
-// @WebMvcTest autoconfigura Security con la config por defecto; importamos la nuestra.
+// @WebMvcTest autoconfigura Security con la config por defecto; importamos la
+// nuestra.
 @Import(SecurityConfig.class)
 class PerfilControllerTest {
 
-  // Simula requests HTTP sin abrir socket ni Tomcat. Lo autoconfigura @WebMvcTest.
+  // Simula requests HTTP sin abrir socket ni Tomcat. Lo autoconfigura
+  // @WebMvcTest.
   @Autowired
   MockMvc mockMvc;
 
-  // Mock de Mockito puesto en el contexto de Spring; el controller lo recibe por inyeccion.
+  // Mock de Mockito puesto en el contexto de Spring; el controller lo recibe por
+  // inyeccion.
   @MockBean
   PerfilService perfilService;
 
   // SecurityConfig arma un JwtDecoder desde issuer-uri (llamada de red a Keycloak
-  // al arrancar el contexto). Con este mock la config se wirea sin salir a la red;
+  // al arrancar el contexto). Con este mock la config se wirea sin salir a la
+  // red;
   // el post-processor jwt() de abajo saltea la validacion real.
   @MockBean
   JwtDecoder jwtDecoder;
@@ -54,9 +61,9 @@ class PerfilControllerTest {
             List.of(), List.of(), List.of("BASICO"), LocalDate.now()));
 
     mockMvc.perform(get("/perfil")
-            .with(jwt()
-                .jwt(j -> j.claim("preferred_username", "ana"))
-                .authorities(new SimpleGrantedAuthority("ROLE_BASICO"))))
+        .with(jwt()
+            .jwt(j -> j.claim("preferred_username", "ana"))
+            .authorities(new SimpleGrantedAuthority("ROLE_BASICO"))))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.username").value("ana"))
         .andExpect(jsonPath("$.roles[0]").value("BASICO"));
@@ -66,4 +73,46 @@ class PerfilControllerTest {
   void sinToken_devuelve401() throws Exception {
     mockMvc.perform(get("/perfil")).andExpect(status().isUnauthorized());
   }
+
+  @Test
+  void putPerfil_conBodyValido_devuelve200yElDto() throws Exception {
+    when(perfilService.actualizarPerfil(any(), anyList(), any()))
+        .thenReturn(new PerfilResponse(
+            "kc-1", "ana", "Ana Perez", "ana@x.com", "1150505050", "MAIL", "SINCRONICO",
+            new PerfilResponse.Ubicacion(null, null, null),
+            List.of(), List.of(), List.of("BASICO"), LocalDate.now()));
+
+    mockMvc.perform(put("/perfil")
+        .with(jwt()
+            .jwt(j -> j.claim("preferred_username", "ana"))
+            .authorities(new SimpleGrantedAuthority("ROLE_BASICO")))
+        .contentType(MediaType.APPLICATION_JSON)
+        .content("{ \"numeroDeContacto\": \"1150505050\", \"estrategiaNotificacion\": \"MAIL\" }"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.username").value("ana"))
+        .andExpect(jsonPath("$.numeroDeContacto").value("1150505050"));
+  }
+
+  @Test
+  void putPerfil_conEstrategiaInvalida_devuelve400ConDetalleDeCampos() throws Exception {
+    mockMvc.perform(put("/perfil")
+        .with(jwt().authorities(new SimpleGrantedAuthority("ROLE_BASICO")))
+        .contentType(MediaType.APPLICATION_JSON)
+        .content("{ \"estrategiaNotificacion\": \"TELEGRAM\" }"))
+        .andExpect(status().isBadRequest())
+        .andExpect(jsonPath("$.errores.estrategiaNotificacion").exists());
+
+    verifyNoInteractions(perfilService);
+  }
+
+  @Test
+  void putUbicacion_sinProvinciaId_devuelve400() throws Exception {
+    mockMvc.perform(put("/perfil/ubicacion")
+        .with(jwt().authorities(new SimpleGrantedAuthority("ROLE_BASICO")))
+        .contentType(MediaType.APPLICATION_JSON)
+        .content("{ }"))
+        .andExpect(status().isBadRequest())
+        .andExpect(jsonPath("$.errores.provinciaId").exists());
+  }
+
 }

@@ -10,20 +10,24 @@ import jakarta.persistence.Converter;
 public class EstrategiaDeNotificacionConverter implements AttributeConverter<EstrategiaDeNotificacion, String> {
   @Override
   public String convertToDatabaseColumn(EstrategiaDeNotificacion estrategiaDeNotificacion) {
-    return estrategiaDeNotificacion == null ? null : estrategiaDeNotificacion.getClass().getName();
+    if (estrategiaDeNotificacion instanceof EstrategiaDeWPP) {
+      return "WHATSAPP";
+    }
+    if (estrategiaDeNotificacion instanceof EstrategiaDeMail) {
+      return "MAIL";
+    }
+    return null;
   }
 
   @Override
-  public EstrategiaDeNotificacion convertToEntityAttribute(String s) {
-    EstrategiaDeNotificacion estrategiaDeNotificacion = null;
-    if (s == null)
+  public EstrategiaDeNotificacion convertToEntityAttribute(String valor) {
+    if (valor == null) {
       return null;
-    else
-      switch (s) {
-        case "tp.models.entities.notificador.wpp.EstrategiaDeWPP" : estrategiaDeNotificacion = new EstrategiaDeWPP(); break;
-        case "tp.models.entities.notificador.mail.EstrategiaDeMail" : estrategiaDeNotificacion = new EstrategiaDeMail(); break;
-        default: estrategiaDeNotificacion = new EstrategiaDeMail();
     }
-    return estrategiaDeNotificacion;
+    return switch (valor) {
+      case "MAIL" -> new EstrategiaDeMail();
+      case "WHATSAPP" -> new EstrategiaDeWPP();
+      default -> null;
+    };
   }
 }

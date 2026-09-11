@@ -14,7 +14,7 @@ import java.util.TimeZone;
 
 @SpringBootApplication(scanBasePackages = "tp")
 @EnableJpaRepositories(basePackages = "tp.repositories")
-@EntityScan(basePackages = "tp.models")
+@EntityScan(basePackages = { "tp.models", "tp.services.georef" })
 @EnableConfigurationProperties(KeycloakAdminProperties.class)
 @EnableScheduling
 public class App {

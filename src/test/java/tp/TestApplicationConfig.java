@@ -10,12 +10,13 @@ import org.springframework.context.annotation.ComponentScan;
  * ancestro de los tests, asi que Spring no lo encuentra al subir por el arbol.
  * Esta clase, en la raiz `tp`, es la que descubren los tests bajo `tp.*`.
  *
- * El @ComponentScan apunta solo a tp.controllers: alcanza para que @WebMvcTest
- * descubra los controllers, y evita chocar con el otro @SpringBootConfiguration
+ * El @ComponentScan apunta a tp.controllers y tp.server.exceptions: alcanza
+ * para que @WebMvcTest descubra los controllers y el @RestControllerAdvice
+ * (GlobalExceptionHandler), y evita chocar con el otro @SpringBootConfiguration
  * (tp.server.App) y con su @EnableJpaRepositories.
  */
 @SpringBootConfiguration
 @EnableAutoConfiguration
-@ComponentScan(basePackages = "tp.controllers")
+@ComponentScan(basePackages = {"tp.controllers", "tp.server.exceptions"})
 class TestApplicationConfig {
 }

@@ -17,11 +17,11 @@ public class ConfiguracionDiferida {
     }
     private Timer timer;
     @Getter
-    private static List<Asincronico> asincronicos;
+    private static List<Asincronico> asincronicos = new ArrayList<>();
 
     public ConfiguracionDiferida() {
-        this.programarNotificacionesHorario();
         timer = new Timer();
+        this.programarNotificacionesHorario();
     }
 
     public static void agregarAsincronico(Asincronico asincronico) {
