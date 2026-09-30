@@ -18,6 +18,8 @@ import tp.services.keycloak.KeycloakAdminService;
 import tp.services.keycloak.KeycloakTokenProvider;
 import tp.services.keycloak.KeycloakUser;
 
+import javax.print.attribute.standard.Media;
+
 class KeycloakAdminServiceTest {
 
   private MockRestServiceServer server;
@@ -50,6 +52,31 @@ class KeycloakAdminServiceTest {
     List<KeycloakUser> usuarios = service.listarUsuarios(null, 0, 20);
 
     assertThat(usuarios).extracting(KeycloakUser::username).containsExactly("admin");
+    server.verify();
+  }
+
+  @Test
+  void listarUsuarioPorRol_consultalosUsuariosDelRolDeRealm(){
+    server.expect(requestTo("http://kc/admin/realms/monitoreo-servicios/roles/BASICO/users?max=1000"))
+            .andExpect(header("Authorization", "Bearer fake-token"))
+            .andRespond(withSuccess("""
+                     [{"id":"1","username":"basico","enabled":true},{"id":"2","username":"juan","enabled":false}]
+                    """, MediaType.APPLICATION_JSON));
+    List<KeycloakUser> usuarios = service.listarUsuarioPorRol("BASICO");
+
+    assertThat(usuarios).extracting(KeycloakUser::username).containsExactly("basico", "juan");
+    assertThat(usuarios).extracting(KeycloakUser::enabled).containsExactly(true, false);
+    server.verify();
+  }
+
+  @Test
+  void listarUsuarioQueryVacia_devuelveBody200BodyVacio(){
+    server.expect(requestTo("http://kc/admin/realms/monitoreo-servicios/roles/BASICO/users?max=1000"))
+            .andExpect(header("Authorization", "Bearer fake-token"))
+            .andRespond(withSuccess());
+    List<KeycloakUser> usuarios = service.listarUsuarioPorRol("BASICO");
+
+    assertThat(usuarios).isEqualTo(List.of());
     server.verify();
   }
 }

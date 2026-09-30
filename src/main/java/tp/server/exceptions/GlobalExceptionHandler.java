@@ -12,6 +12,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.validation.method.ParameterValidationResult;
+import org.springframework.web.method.annotation.HandlerMethodValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 
@@ -32,6 +34,23 @@ public class GlobalExceptionHandler {
         log.warn("[{}] 400 -> validacion {}", traceId, errores);
         return ResponseEntity.badRequest()
                 .body(new ApiError("La solicitud tiene campos inválidos", traceId, Instant.now(), errores));
+    }
+
+    // Constraints sobre parametros del metodo (@RequestParam, @PathVariable), p. ej.
+    // @Min en la paginacion. Spring 6.1 las valida sin necesidad de @Validated.
+    @ExceptionHandler(HandlerMethodValidationException.class)
+    public ResponseEntity<ApiError> validacionDeParametros(HandlerMethodValidationException e) {
+        Map<String, String> errores = new LinkedHashMap<>();
+
+        for (ParameterValidationResult resultado : e.getAllValidationResults()) {
+            String parametro = resultado.getMethodParameter().getParameterName();
+            resultado.getResolvableErrors().forEach(err -> errores.putIfAbsent(parametro, err.getDefaultMessage()));
+        }
+
+        String traceId = UUID.randomUUID().toString();
+        log.warn("[{}] 400 -> validacion de parametros {}", traceId, errores);
+        return ResponseEntity.badRequest()
+                .body(new ApiError("La solicitud tiene parámetros inválidos", traceId, Instant.now(), errores));
     }
 
     @ExceptionHandler(SolicitudInvalidaException.class)

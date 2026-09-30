@@ -36,6 +36,27 @@ public class KeycloakAdminService {
 
     }
 
+    public List<KeycloakRole> rolesDisponibles(String keycloakId){
+        KeycloakRole[] roles = restClient.get()
+                .uri("/admin/realms/{realm}/users/{id}/role-mappings/realm/available",properties.realm(), keycloakId)
+                .header(HttpHeaders.AUTHORIZATION, bearer())
+                .retrieve()
+                .body(KeycloakRole[].class);
+
+        return roles == null ? List.of() : Arrays.asList(roles);
+    }
+
+    public List<KeycloakUser> listarUsuarioPorRol(String rol){
+        KeycloakUser[] users = restClient.get()
+                .uri(uri -> uri.path("/admin/realms/{realm}/roles/{rol}/users")
+                        .queryParam("max",1000)
+                        .build(properties.realm(),  rol))
+                .header(HttpHeaders.AUTHORIZATION, bearer())
+                .retrieve()
+                .body(KeycloakUser[].class);
+        return users == null ? List.of() : Arrays.asList(users);
+    }
+
     public int contarUsuarios(String search) {
         Integer total = restClient.get()
                 .uri(uri -> uri.path("/admin/realms/{realm}/users/count")
